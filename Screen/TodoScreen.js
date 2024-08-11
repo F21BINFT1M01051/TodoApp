@@ -1,6 +1,5 @@
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View, Modal, KeyboardAvoidingView, Platform, Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Feather from '@expo/vector-icons/Feather';
@@ -94,8 +93,9 @@ const TodoScreen = (props) => {
     }
 
     const handleEdit = (todo) => {
-        setEditTodo(todo)
-        setInputValue(todo.name)
+        setModalVisible(true);
+        setEditTodo(todo);
+        setInputValue(todo.name);
 
     }
 
@@ -110,6 +110,7 @@ const TodoScreen = (props) => {
         _storeTasks(updation);
         setEditTodo(null);
         setInputValue("");
+        setModalVisible(false);
     }
 
     var date = new Date().getDate();
@@ -168,17 +169,17 @@ const TodoScreen = (props) => {
 
                                         <View style={{
 
-                                            paddingVertical: 8, borderRadius: 25, backgroundColor: '#e0bbd2', marginTop: 10, height: 50, paddingHorizontal: 15, flexDirection: 'row', shadowColor: 'gray',
+                                            paddingVertical: 10, borderRadius: 25, backgroundColor: '#e0bbd2', marginTop: 10, height: 'auto', paddingHorizontal: 15, flexDirection: 'row', shadowColor: 'gray',
                                             elevation: 5,
                                             alignItems: 'center',
                                             marginBottom: 5
                                         }}>
-                                            <Text style={{ flex: 1, fontSize: 10 }}>{item.name}</Text>
+                                            <Text style={{ flex: 1, fontSize: 12 }}>{item.name}</Text>
                                             <TouchableOpacity>
                                                 <MaterialCommunityIcons name="pencil" size={24} color="gray" style={{ marginHorizontal: 5 }} onPress={() => handleEdit(item)} />
                                             </TouchableOpacity>
                                             <TouchableOpacity onPress={() => handleDelete(item.id)}>
-                                                <MaterialCommunityIcons name="delete-empty" size={24} color="gray" style={{ marginLeft: 10 }} />
+                                                <MaterialCommunityIcons name="delete-empty" size={24} color="gray"  />
                                             </TouchableOpacity>
                                         </View>
                                     </View>
